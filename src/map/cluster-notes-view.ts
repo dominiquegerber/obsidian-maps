@@ -59,12 +59,13 @@ export class ClusterNotesView extends ItemView {
 		const list = this.contentEl.createDiv({ cls: 'bases-map-cluster-notes-list' });
 		for (const note of selection.notes) {
 			const link = list.createEl('a', {
-				cls: 'bases-map-cluster-note internal-link',
+				cls: 'bases-map-cluster-note',
 				href: note.path,
 				text: note.name,
 			});
 			link.addEventListener('click', (event) => {
 				event.preventDefault();
+				event.stopPropagation();
 				const newLeaf = Keymap.isModEvent(event);
 				void this.app.workspace.openLinkText(note.path, '', newLeaf);
 			});
